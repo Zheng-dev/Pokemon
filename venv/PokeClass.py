@@ -67,20 +67,32 @@ class Poke:
         self.against_water = against_water
 
 
-
 pokemon_list = []
-
 file_to_open = "pokemon.csv"
 with open(file_to_open,'r', encoding ="utf8") as this_csv_file:
     this_csv_reader = csv.reader(this_csv_file, delimiter=",")
     next(this_csv_reader)
+
     for row in this_csv_reader:
-        temp_abilities_list = []
-        abilities = row[0]
-        print(abilities)
-        for i in abilities:
-             if(i not in temp_abilities_list):
-                temp_abilities_list.append(i)
+        newstring = row[0].replace('[','')
+        newstring = newstring.replace(']', '')
+        newstring = newstring.replace("'", '')
+        newstring = newstring.replace(" ", '')
+        temp_abilities_list = newstring.split(',')
+
+        abilities_list = []
+        for i in temp_abilities_list:
+            if i not in abilities_list:
+                abilities_list.append(i)
+
+
+
+
+
+        # print(abilities, len(abilities))
+        # for i in abilities:
+        #      if(i not in temp_abilities_list):
+        #         temp_abilities_list.append(i)
 
 
 
