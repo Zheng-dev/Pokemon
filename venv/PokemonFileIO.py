@@ -1,9 +1,10 @@
 from PokeClass import Pokemon
+import PlayGame
 import csv
 
 POKEDEX = []
 
-class Play:
+class IO:
 
     def read_csv_file():
 
@@ -48,9 +49,19 @@ class Play:
                 poke_class = row[24]                                                            #pokemon's classification
 
                 base_egg, base_happy, base_stats = int(row[20]), int(row[21]), int(row[22])     #base eggs steps, base happiness, and a pokemon's total base stats
-                male_ratio, rate = row[31], row[23]                                             #pokemon's gender chance, and their chances to be captured
-                needed_exp = int(row[26])                                                       #total amount of exp needed for people to fully evolve
+                needed_exp = int(row[26])                                                       # total amount of exp needed for people to fully evolve
 
+
+                male_ratio, rate = row[31], row[23]                                             #pokemon's gender chance, and their chances to be captured
+
+                #takes care of pokemon with no gender
+                if male_ratio == '':
+                    male_ratio = 101
+
+                male_ratio = float(male_ratio)
+
+                #removes any characters
+                rate = int(''.join(filter(str.isdigit, rate)))
 
                 POKEDEX.append(Pokemon(ba_bug, ba_dark, ba_dragon, ba_electric, ba_fairy, ba_fight, ba_fire, ba_flying,
                          ba_ghost, ba_grass, ba_ground, ba_ice, ba_normal, ba_poison, ba_psychic, ba_rock,
@@ -60,7 +71,7 @@ class Play:
                          base_egg, base_happy, abilities_list))
 
     def start():
-        Play.read_csv_file()
+        IO.read_csv_file()
 
 
 

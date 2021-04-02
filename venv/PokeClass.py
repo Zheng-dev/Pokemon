@@ -1,13 +1,6 @@
-import csv
+import PlayGame
 
 class Pokemon:
-
-    # def which_gender(chance):
-    #     male_chance = chance
-    #     female_chance = 100 - chance
-    #
-    # def which_ability(ability_list):
-    #     return (ability_list)
 
     def __init__(self, against_bug, against_dark, against_dragon, against_electric, against_fairy, against_fight, against_fire, against_flying,
                 against_ghost, against_grass, against_ground, against_ice, against_normal, against_poison, against_psychic, against_rock, against_steel,
@@ -15,8 +8,9 @@ class Pokemon:
                 pokedex_num, sp_attack, sp_defense, speed, type1, type2, weight, generation, is_legendary, base_egg_steps, base_happiness,
                 abilities):
 
-        # ability = Pokemon.which_ability(abilities)
-        # gender = Pokemon.which_gender(percent_male)
+        ability = PlayGame.which_ability(abilities)
+        gender = PlayGame.which_gender(percent_male)
+
         #identification
         self.name = name
         self.jp_name = jp_name
@@ -28,7 +22,7 @@ class Pokemon:
         #additional details
         self.generation = generation
         self.is_legendary = is_legendary
-        self.gender = percent_male
+        self.gender = gender
         self.capture_rate = capture_rate
         self.exp_growth = exp_growth
 
@@ -48,7 +42,8 @@ class Pokemon:
         #types and abilities
         self.type1 = type1
         self.type2 = type2
-        self.abilities = abilities
+        self.ability = ability
+        self.possible_abilities = abilities
 
         #type interactions
         self.against_bug = against_bug

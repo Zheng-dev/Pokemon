@@ -1,9 +1,13 @@
 from PokemonFileIO import *
 import PokeClass
 
-Play.start()
-for i in POKEDEX:
-    print(i.gender)
+def main():
+    IO.start()
+    for i in POKEDEX:
+        print(i.name, "\t \t", i.gender, "\t \t", i.ability)
+
+if __name__ == "__main__":
+    main()
 
 
 
