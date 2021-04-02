@@ -1,10 +1,10 @@
 from PokemonFileIO import *
+import PlayGame
 import PokeClass
 
 def main():
     IO.start()
-    for i in POKEDEX:
-        print(i.name, "\t \t", i.gender, "\t \t", i.ability)
+    display_pokedex()
 
 if __name__ == "__main__":
     main()

@@ -12,7 +12,7 @@ class Pokemon:
         gender = PlayGame.which_gender(percent_male)
 
         #identification
-        self.name = name
+        self.en_name = name
         self.jp_name = jp_name
         self.pokedex_num = pokedex_num
         self.classification = classification
@@ -43,7 +43,7 @@ class Pokemon:
         self.type1 = type1
         self.type2 = type2
         self.ability = ability
-        self.possible_abilities = abilities
+        self.abilities = abilities
 
         #type interactions
         self.against_bug = against_bug

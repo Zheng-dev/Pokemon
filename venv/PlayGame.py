@@ -19,3 +19,4 @@ def which_ability(ability_list):
     index = randrange(len(ability_list))
 
     return (ability_list[index])
+

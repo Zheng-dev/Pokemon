@@ -73,7 +73,11 @@ class IO:
     def start():
         IO.read_csv_file()
 
-
+def display_pokedex():
+    fmt = '{:<7} {:<15} {:<10} {:<15} {:<40}'
+    print(fmt.format("Dex #", "en name", "type 1", "type 2", "jp name"))
+    for i in POKEDEX:
+        print(fmt.format(i.pokedex_num, i.en_name, i.type1, i.type2, i.jp_name), i.abilities)
 
 
 
