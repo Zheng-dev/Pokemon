@@ -1,0 +1,12 @@
+from  PokemonFileIO import *
+import PlayGame
+import PokeClass
+
+
+def main():
+    start()
+    display_pokedex()
+
+
+if __name__ == "__main__":
+    main()
