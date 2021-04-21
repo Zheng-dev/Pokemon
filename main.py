@@ -5,7 +5,6 @@ import PokeClass
 
 def main():
     start()
-    display_pokedex()
 
 
 if __name__ == "__main__":

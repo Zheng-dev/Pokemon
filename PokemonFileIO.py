@@ -5,13 +5,14 @@ import PlayGame
 import csv
 import re
 import os
+import glob
 
 POKEDEX = []
 
 
 def start():
     read_csv_file()
-
+    modify_image_name()
 
 def read_csv_file():
     file_to_open = "pokemon.csv"
@@ -56,7 +57,7 @@ def read_csv_file():
             hp_stat, speed_stat = int(row[28]), int(row[35])
 
             # pokemon's english name, japanese name, and pokedex entry
-            poke_en_name, poke_jp_name, poke_num = row[30], row[29], row[32]
+            poke_en_name, poke_jp_name, poke_num = row[30], row[29], row[32].zfill(3)
 
             # pokemon's height, weight, and generation they're from
             poke_height, poke_weight, poke_gene = row[27], row[38], row[39]
@@ -85,13 +86,14 @@ def read_csv_file():
             # removes any characters
             rate = int(''.join(filter(str.isdigit, rate)))
 
-            im = import_images(poke_num)
+            image_list = load_image(poke_num)
+
             POKEDEX.append(Pokemon(ba_bug, ba_dark, ba_dragon, ba_electric, ba_fairy, ba_fight, ba_fire, ba_flying,
                                    ba_ghost, ba_grass, ba_ground, ba_ice, ba_normal, ba_poison, ba_psychic, ba_rock,
                                    ba_steel, ba_water, attack_stat, base_stats, rate, poke_class, defense_stat,
                                    needed_exp, poke_height, hp_stat, poke_jp_name, poke_en_name, male_ratio, poke_num,
-                                   sp_attack_stat,sp_defense_stat, speed_stat, poke_type1, poke_type2, poke_weight,
-                                   poke_gene,poke_is_legend, base_egg, base_happy, abilities_list, im))
+                                   sp_attack_stat, sp_defense_stat, speed_stat, poke_type1, poke_type2, poke_weight,
+                                   poke_gene, poke_is_legend, base_egg, base_happy, abilities_list, image_list))
 
 
 def display_pokedex():
@@ -107,10 +109,25 @@ def display_pokedex():
                              i.type1, i.type2, colored(i.jp_name, 'white')), "\t \t", i.abilities)
 
 
-def import_images(dex_num):
-    im_list = []
-    for file in os.listdir("pokemon_images"):
-        if re.match("/[^0-9.,]+/", file):
-            print("image#", dex_num, " ", file)
-            im = Image.open(file)
-    return im_list
+def modify_image_name():
+
+    os.chdir("pokemon_images")
+
+    # modify all image names to have 00 in case they are under 100
+    for filename in os.listdir("."):
+        try:
+            num = int(filename.split('.')[0])
+            os.rename(filename, format(num, '03') + filename[filename.index('.'):])
+        except:
+
+            # does it for pictures with other characters aside from numbers
+            num = int(filename.split('-')[0])
+            os.rename(filename, format(num, '03') + filename[filename.index('-'):])
+
+def load_image(id):
+    image_list = []
+    for file in glob.glob("pokemon_images/"+id+'*.png'):
+        image_list.append(file)
+    return image_list
+
+

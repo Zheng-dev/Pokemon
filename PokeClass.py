@@ -8,7 +8,7 @@ class Pokemon:
                  against_normal,against_poison, against_psychic, against_rock, against_steel, against_water, attack,
                  base_total,capture_rate, classification, defense, exp_growth, height, hp, jp_name, name, percent_male,
                  pokedex_num, sp_attack, sp_defense, speed, type1, type2, weight, generation, is_legendary,
-                 base_egg_steps, base_happiness, abilities, picture):
+                 base_egg_steps, base_happiness, abilities, poke_images):
 
         ability = PlayGame.which_ability(abilities)
         gender = PlayGame.which_gender(percent_male)
@@ -67,4 +67,6 @@ class Pokemon:
         self.against_steel = against_steel
         self.against_water = against_water
 
-        self.pic = picture
+        self.poke_images = poke_images
+
+
